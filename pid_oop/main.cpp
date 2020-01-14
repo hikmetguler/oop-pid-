@@ -68,6 +68,8 @@ int main() {
             case 6:
                 condition = false;
                 break;
+            default:
+                cout<<"invalid input,try again"<<endl;
         }
     }
 }
