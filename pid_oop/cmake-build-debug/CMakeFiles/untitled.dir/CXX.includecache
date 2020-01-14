@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Dell/Desktop/c++/pid_oop/main.cpp
+iostream
+-
+utility
+-
+pid.h
+C:/Users/Dell/Desktop/c++/pid_oop/pid.h
+
+C:/Users/Dell/Desktop/c++/pid_oop/pid.cpp
+utility
+-
+iostream
+-
+pid.h
+C:/Users/Dell/Desktop/c++/pid_oop/pid.h
+
+C:/Users/Dell/Desktop/c++/pid_oop/pid.h
+utility
+-
+iostream
+-
+

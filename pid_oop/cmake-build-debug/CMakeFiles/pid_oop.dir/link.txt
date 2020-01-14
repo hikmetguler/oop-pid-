@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2019.2.5\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\pid_oop.dir/objects.a
+C:\wingw\bin\ar.exe cr CMakeFiles\pid_oop.dir/objects.a @CMakeFiles\pid_oop.dir\objects1.rsp
+C:\wingw\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\pid_oop.dir/objects.a -Wl,--no-whole-archive  -o pid_oop.exe -Wl,--out-implib,libpid_oop.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\pid_oop.dir\linklibs.rsp
