@@ -39,40 +39,33 @@ int main() {
     bool condition = true;
     while (condition){
         cout << " ---options---" << endl;
-//        cout << "1- enter pid parameters" << endl;
-//        cout << "2- enter tf parameters" << endl;
-        cout << "3- update pid parameters" << endl;
-        cout << "4- update tf parameters" << endl;
-        cout << "5- return old pid parameters" << endl;
-        cout << "6- return old tf parameters" << endl;
-        cout << "7- start calculation" << endl;
-        cout << "8- if you want to exit"<<endl;
+        cout << "1- update pid parameters" << endl;
+        cout << "2- update tf parameters" << endl;
+        cout << "3- return old pid parameters" << endl;
+        cout << "4- return old tf parameters" << endl;
+        cout << "5- start calculation" << endl;
+        cout << "6- if you want to exit"<<endl;
         cout << "enter the operation number that you want to do" << endl;
 
         int option;
         cin >> option;
         switch (option) {
-//            case 1:
-//                dataPID1.change_pid_params(experimental_active_pid, experimental_inactive_pid);
-//                break;
-//            case 2:
-//                break;
-            case 3:
+            case 1:
                 dataPID1.change_pid_params(active_pid_params, inactive_pid_params);
                 break;
-            case 4:
+            case 2:
                 dataPID1.change_tf_params(active_tf_params, inactive_tf_params);
                 break;
-            case 5:
+            case 3:
                 dataPID1.return_old_pid();
                 break;
-            case 6:
+            case 4:
                 dataPID1.return_old_tf();
                 break;
-            case 7:
+            case 5:
                 dataPID1.calculate(pid_params_struct, tf_params_struct);
                 break;
-            case 8:
+            case 6:
                 condition = false;
                 break;
         }
