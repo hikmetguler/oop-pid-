@@ -50,7 +50,6 @@ public:
 
     //initialize the pid and tf parameters
     pid initialize_initial_pid_parameters(pid datanull);
-    void initialize_tf_struct_parameters(pid null_pid);
 
     float stp(float t);
     float ram(float t);
