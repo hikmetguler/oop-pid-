@@ -10,11 +10,6 @@ tf_struct tf_params_struct;
 tf_struct inactive_tf_params;
 tf_struct active_tf_params;
 
-pid_struct experimental_active_pid;
-pid_struct experimental_inactive_pid;
-tf_struct experimental_active_tf;
-tf_struct experimental_inactive_tf;
-
 pid::pid(float _K, float _Ti, float _Td, float _N, float _b, float _c, float _CSmax, float _CSmin, float _Ts,float _mu,float _T) :K(_K),Ti(_Ti), Td(_Td),N(_N),b(_b),c(_c),CSmax(_CSmax),CSmin(_CSmin),Ts(_Ts),mu(_mu),T(_T)
          {
              cout<<"pid class constructor has been called"<<endl;
@@ -41,8 +36,7 @@ pid::pid(float _K, float _Ti, float _Td, float _N, float _b, float _c, float _CS
              cout<<"initial values defined as y = 0, uo = 0, xo = 0."<<endl;
              tf_params_struct.y_str = 0;
              tf_params_struct.uo_str = 0;
-             tf_params_struct.xo_str = 0;
-         }
+             tf_params_struct.xo_str = 0;}
 
 pid::~pid(){}
 
@@ -122,7 +116,7 @@ pid pid::initialize_initial_pid_parameters(pid null_pid) {
     float Ti_int; cin >>Ti_int;
     null_pid.set_Ti(Ti_int);
     cout << "enter new Td" << endl;
-    float Td_int; cin >>Ti_int;
+    float Td_int; cin >>Td_int;
     null_pid.set_Td(Td_int);
     cout << "enter new N" << endl;
     float N_int; cin >>N_int;
@@ -162,44 +156,16 @@ pid pid::initialize_initial_pid_parameters(pid null_pid) {
     pid_params_struct.CSmax_str = dataPID1.get_Csmax();
     pid_params_struct.CSmin_str = dataPID1.get_Csmin();
     pid_params_struct.Ts_str = dataPID1.get_Ts();
+
     inactive_pid_params = pid_params_struct;
     inactive_tf_params = tf_params_struct;
+    active_pid_params = pid_params_struct;
+    active_tf_params = tf_params_struct;
     return dataPID1;
-}
-
-void initialize_tf_struct_parameters(pid null_pid){
-    cout<<"to initialize tf paramteres"<<endl;
-    cout << "enter new tf Ts" << endl;
-    float Ts_int;cin>>Ts_int;
-    null_pid.set_Ts(Ts_int);
-    cout << "enter new tf mu" << endl;
-    float mu_int;cin>>mu_int;
-    null_pid.set_mu(mu_int);
-    cout << "enter new tf T" << endl;
-    float T_int;cin>>T_int;
-    null_pid.set_T(T_int);
-    tf_params_struct.Ts_str = null_pid.get_Ts();
-    tf_params_struct.T_str = null_pid.get_T();
-    tf_params_struct.mu_str = null_pid.get_mu();
-    inactive_tf_params = tf_params_struct;
-
-
-
 }
 
 void pid::change_pid_params(pid_struct &active_params, pid_struct &inactive_params) {
     char answer;
-
-    active_params.K_str = pid_params_struct.K_str;
-    active_params.Ti_str = pid_params_struct.Ti_str;
-    active_params.Td_str = pid_params_struct.Td_str;
-    active_params.N_str = pid_params_struct.N_str;
-    active_params.b_str = pid_params_struct.b_str;
-    active_params.c_str = pid_params_struct.c_str;
-    active_params.CSmax_str = pid_params_struct.CSmax_str;
-    active_params.CSmin_str = pid_params_struct.CSmin_str;
-    active_params.Ts_str = pid_params_struct.Ts_str;
-
     cout << "enter new pid K" << endl;
     cin >> inactive_params.K_str;
     cout << "enter new Ti" << endl;
@@ -224,16 +190,6 @@ void pid::change_pid_params(pid_struct &active_params, pid_struct &inactive_para
     cin >> answer;
     if (answer == 'y') {
         swap(active_params, inactive_params);
-//        set_K(active_params.K_str);
-//        set_Ti(active_params.Ti_str);
-//        set_Td(active_params.Td_str);
-//        set_N(active_params.N_str);
-//        set_b(active_params.b_str);
-//        set_c(active_params.c_str);
-//        set_Csmax(active_params.CSmax_str);
-//        set_Csmin(active_params.CSmin_str);
-//        set_Ts(active_params.Ts_str);
-
         active_pid_params = active_params;
         inactive_pid_params = inactive_params;
 
@@ -247,17 +203,18 @@ void pid::change_pid_params(pid_struct &active_params, pid_struct &inactive_para
              << "Td inactive = " << inactive_pid_params.Td_str << "   ***   " << "N inactive = " << inactive_pid_params.N_str << "   ***   "
              << "b inactive = " << inactive_pid_params.b_str << "   ***   " << "c inactive = " << inactive_pid_params.c_str << "   ***   "
              << "Csmax inactive = " << inactive_pid_params.CSmax_str << "   ***   " << "Csmin inactive = " << inactive_pid_params.CSmin_str
-             << "   ***   " << "Ts inactive = " << inactive_pid_params.Ts_str << endl;}
+             << "   ***   " << "Ts inactive = " << inactive_pid_params.Ts_str << endl;
+
+    cout<<active_tf_params.T_str<<"---  active  ---"<<active_tf_params.mu_str<<endl;
+    cout<<inactive_tf_params.T_str<<"---    inactive    ---"<<inactive_tf_params.mu_str<<endl;}
 
     else if (answer == 'n') {cout << "operation is cancelled" << endl;}
 
     else {cout << "invalid input" << endl; }
+
 }
 void pid::change_tf_params(tf_struct &active_params, tf_struct &inactive_params)
 {
-    active_params.mu_str = active_tf_params.mu_str;
-    active_params.T_str = active_tf_params.T_str;
-
     cout<<"enter new mu"<<endl;
     cin>>inactive_tf_params.mu_str;
     cout<<"enter new T"<<endl;
