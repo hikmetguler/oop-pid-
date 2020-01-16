@@ -12,29 +12,10 @@ extern tf_struct inactive_tf_params;
 extern pid_struct active_pid_params;
 extern tf_struct active_tf_params;
 
-extern pid_struct experimental_active_pid;
-extern pid_struct experimental_inactive_pid;
-extern tf_struct experimental_active_tf;
-extern tf_struct experimental_inactive_tf;
-
 int main() {
 //    pid dataPID1(20, 5, 0, 1, 1, 0, 5, -5, 0.25, 1, 10); // PID data structure
     pid dataPID1 (0,0,0,0,0,0,0,0,0,0,0);
     dataPID1 = dataPID1.initialize_initial_pid_parameters(dataPID1);
-    cout<<"mu active = "<<tf_params_struct.mu_str<<"   ***   "<<"T active ="<<tf_params_struct.T_str<<endl;
-    cout<<"mu inactive = "<<inactive_tf_params.mu_str<<"   ***   "<<"T inactive ="<<inactive_tf_params.T_str<<endl;
-
-    cout << "K active = " << pid_params_struct.K_str << "   ***   " << "Ti active = " << pid_params_struct.Ti_str << "   ***   "
-         << "Td active = " << pid_params_struct.Td_str << "   ***   " << "N  active = " << pid_params_struct.N_str << "   ***   " << "b  active = "
-         << pid_params_struct.b_str << "   ***   " << "c active = " << pid_params_struct.c_str << "   ***   " << "Csmax active = "
-         << pid_params_struct.CSmax_str << "   ***   " << "Csmin active = " << pid_params_struct.CSmin_str << "   ***   "
-         << "Ts active = " << pid_params_struct.Ts_str << endl;
-
-    cout << "K inactive = " << inactive_pid_params.K_str << "   ***   " << "Ti inactive = " << inactive_pid_params.Ti_str << "   ***   "
-         << "Td inactive = " << inactive_pid_params.Td_str << "   ***   " << "N inactive = " << inactive_pid_params.N_str << "   ***   "
-         << "b inactive = " << inactive_pid_params.b_str << "   ***   " << "c inactive = " << inactive_pid_params.c_str << "   ***   "
-         << "Csmax inactive = " << inactive_pid_params.CSmax_str << "   ***   " << "Csmin inactive = " << inactive_pid_params.CSmin_str
-         << "   ***   " << "Ts inactive = " << inactive_pid_params.Ts_str << endl;
 
     bool condition = true;
     while (condition){
@@ -63,7 +44,7 @@ int main() {
                 dataPID1.return_old_tf();
                 break;
             case 5:
-                dataPID1.calculate(pid_params_struct, tf_params_struct);
+                dataPID1.calculate(active_pid_params, active_tf_params);
                 break;
             case 6:
                 condition = false;
